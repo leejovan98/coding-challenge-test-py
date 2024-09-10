@@ -9,6 +9,11 @@ def kazuma_jovan(monsters):
     for i in range(2, length - 1):
         dp[0][i] = max(dp[3][i - 1], dp[1][i - 1]) + monsters[i]
         dp[1][i] = dp[2][i - 1] - monsters[i]
-        dp[2][i] = max(dp[0][i - 1], dp[1][i - 1])
+        dp[2][i] = max(dp[0][i - 1], dp[2][i - 1])
         dp[3][i] = max(dp[3][i - 1], dp[1][i - 1])
     return max(dp[0][-2], dp[1][-2], dp[2][-2], dp[3][-2])
+
+print(kazuma_jovan([1,4,5,0,4]))
+print(kazuma_jovan([5,4,3,2,1]))
+print(kazuma_jovan([1,100,340,210,1,4,530]))
+print(kazuma_jovan([1]))
