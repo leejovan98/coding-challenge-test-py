@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request, jsonify
 
 import kazuma
+import kazuma_megan
 from clumsy import solution_adhy, solution_louis
 
 
@@ -31,7 +32,7 @@ def solveKazuma():
     ans = []
     for test_case in data:
         monsters = test_case["monsters"]
-        result = kazuma.kazuma_jovan(monsters)
+        result = kazuma_megan.kazuma_jovan(monsters)
         ans.append({"efficiency": result})
     return jsonify(ans)
 
