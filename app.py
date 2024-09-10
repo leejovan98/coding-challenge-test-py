@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request, jsonify
-from clumsy_louis import solution
+from clumsy import solution_adhy, solution_louis
 
 
 app = Flask(__name__)
@@ -18,7 +18,7 @@ def solveClumsy():
     for test_case in data:
         inputDict = test_case["dictionary"]
         mistypes = test_case["mistypes"]
-        result = solution(inputDict, mistypes)
+        result = solution_adhy(inputDict, mistypes)
         ans.append({"corrections": result})
     return jsonify(ans)
 
