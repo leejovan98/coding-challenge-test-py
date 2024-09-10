@@ -1,23 +1,25 @@
 from flask import Flask
 from flask import request, jsonify
-import json
+from clumsy_louis import solution
 
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route("/")
 def hello_world():  # put application's code here
-    return 'Hello World!'
+    return "Hello World!"
 
-@app.route('/louis_clumsy', methods=['POST'])
+
+@app.route("/the-clumsy-programmer", methods=["POST"])
 def solveClumsy():
     data = request.json
-    parsedJson = json.loads(data)
-    inputDict = parsedJson["dictionary"]
-    mistypes = parsedJson["mistypes"]
-    result = solveClumsy(inputDict, mistypes)
+    data = data[0]
+    inputDict = data["dictionary"]
+    mistypes = data["mistypes"]
+    result = solution(inputDict, mistypes)
     return jsonify(result)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0")
