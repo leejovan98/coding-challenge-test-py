@@ -3,17 +3,20 @@ from string import ascii_lowercase
 
 
 def solution_adhy(properWords, mistypes):
-    properWords = set(properWords)
-    res = []
-    for mistype in mistypes:
+    def fix_word(properWords, mistype):
         for i in range(len(mistype)):
             prefix = mistype[:i]
             suffix = mistype[i + 1 :]
             for ch in ascii_lowercase:
                 fixed = prefix + ch + suffix
+                print(fixed)
                 if fixed in properWords:
-                    res.append(fixed)
-                    break
+                    return fixed
+
+    properWords = set(properWords)
+    res = []
+    for mistype in mistypes:
+        res.append(fix_word(properWords, mistype))
     return res
 
 
