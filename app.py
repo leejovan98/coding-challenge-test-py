@@ -1,5 +1,7 @@
 from flask import Flask
 from flask import request, jsonify
+
+import kazuma
 from clumsy import solution_adhy, solution_louis
 
 
@@ -20,6 +22,17 @@ def solveClumsy():
         mistypes = test_case["mistypes"]
         result = solution_adhy(inputDict, mistypes)
         ans.append({"corrections": result})
+    return jsonify(ans)
+
+
+@app.route("/efficient-hunter-kazuma", methods=["POST"])
+def solveKazuma():
+    data = request.json
+    ans = []
+    for test_case in data:
+        monsters = test_case["monsters"]
+        result = kazuma.kazuma_jovan(monsters)
+        ans.append({"efficiency": result})
     return jsonify(ans)
 
 
