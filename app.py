@@ -14,11 +14,13 @@ def hello_world():  # put application's code here
 @app.route("/the-clumsy-programmer", methods=["POST"])
 def solveClumsy():
     data = request.json
-    data = data[0]
-    inputDict = data["dictionary"]
-    mistypes = data["mistypes"]
-    result = solution(inputDict, mistypes)
-    return jsonify([{"corrections": result}])
+    ans = []
+    for test_case in data:
+        inputDict = test_case["dictionary"]
+        mistypes = test_case["mistypes"]
+        result = solution(inputDict, mistypes)
+        ans.append({"corrections": result})
+    return jsonify(ans)
 
 
 if __name__ == "__main__":
