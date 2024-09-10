@@ -9,14 +9,15 @@ def solution_adhy(properWords, mistypes):
             suffix = mistype[i + 1 :]
             for ch in ascii_lowercase:
                 fixed = prefix + ch + suffix
-                print(fixed)
                 if fixed in properWords:
                     return fixed
 
     properWords = set(properWords)
     res = []
     for mistype in mistypes:
-        res.append(fix_word(properWords, mistype))
+        fixed = fix_word(properWords, mistype)
+        if fixed:
+            res.append(fixed)
     return res
 
 
