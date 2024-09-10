@@ -1,27 +1,23 @@
-import logging
-import socket
-
-from routes import app
-
-logger = logging.getLogger(__name__)
+from flask import Flask
+from flask import request
+import json
 
 
-@app.route("/", methods=["GET"])
-def default_route():
-    return "Python Template"
+app = Flask(__name__)
 
 
-logger = logging.getLogger()
-handler = logging.StreamHandler()
-formatter = logging.Formatter("%(asctime)s %(name)-12s %(levelname)-8s %(message)s")
-handler.setFormatter(formatter)
-logger.addHandler(handler)
-logger.setLevel(logging.INFO)
+@app.route('/')
+def hello_world():  # put application's code here
+    return 'Hello World!'
 
-if __name__ == "__main__":
-    logging.info("Starting application ...")
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind(("localhost", 8080))
-    port = sock.getsockname()[1]
-    sock.close()
-    app.run(port=port)
+@app.route('/louis_clumsy', methods=['POST'])
+def solveClumsy():
+    data = request.json
+    parsedJson = json.loads(data)
+    inputDict = parsedJson["dictionary"]
+    mistypes = parsedJson["mistypes"]
+    result = solveClumsy(inputDict, mistypes)
+    return jsonify(result)
+
+if __name__ == '__main__':
+    app.run()
