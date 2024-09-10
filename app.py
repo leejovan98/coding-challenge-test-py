@@ -18,7 +18,7 @@ def solveClumsy():
     inputDict = data["dictionary"]
     mistypes = data["mistypes"]
     result = solution(inputDict, mistypes)
-    return jsonify(result)
+    return jsonify([{"corrections": result}])
 
 
 if __name__ == "__main__":
