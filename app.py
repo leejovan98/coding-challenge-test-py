@@ -3,7 +3,7 @@ from flask import request, jsonify
 
 import kazuma
 import kazuma_megan
-from clumsy import solution_adhy, solution_louis
+from clumsy import solution_trie
 
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ def solveClumsy():
     for test_case in data:
         inputDict = test_case["dictionary"]
         mistypes = test_case["mistypes"]
-        result = solution_adhy(inputDict, mistypes)
+        result = solution_trie(inputDict, mistypes)
         ans.append({"corrections": result})
     return jsonify(ans)
 
